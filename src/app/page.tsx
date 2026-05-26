@@ -134,7 +134,7 @@ export default function PropGenAI() {
       {/* RESULTS */}
       <section id="results" className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-6 text-center mb-12">
+          <div className="grid md:grid-cols-3 gap-6 text-center">
             {[
               { value: "48h", label: "de la discovery au contrat signé" },
               { value: "−90%", label: "de temps passé à rédiger des propales" },
@@ -146,18 +146,6 @@ export default function PropGenAI() {
               </div>
             ))}
           </div>
-          <div className="bg-rose-50 border border-rose-100 rounded-2xl p-8 text-center">
-            <blockquote className="text-xl font-medium text-rose-950 mb-5 leading-relaxed" style={{ fontFamily: "var(--font-display)" }}>
-              &ldquo;Je passais 4h à rédiger chaque propale. Maintenant je dicte mes notes et PropGenAI fait le reste. Mon taux de closing a augmenté de 40% juste parce que je réponds plus vite.&rdquo;
-            </blockquote>
-            <div className="flex items-center justify-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-rose-200 flex items-center justify-center font-bold text-rose-700">JM</div>
-              <div className="text-left">
-                <div className="font-semibold text-rose-950">Julien M.</div>
-                <div className="text-sm text-rose-500">Consultant freelance, agence digitale</div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -168,9 +156,14 @@ export default function PropGenAI() {
             Votre prochaine propale en 5 minutes
           </h2>
           <p className="text-rose-100 text-xl mb-10">Importez vos notes. PropGenAI fait le reste.</p>
-          <a href="mailto:hello@wikolabs.com?subject=PropGenAI — Demande de démo" className="inline-block bg-white text-rose-600 hover:bg-rose-50 px-10 py-5 rounded-xl font-bold text-xl transition-all shadow-xl">
-            Générer ma première propale →
-          </a>
+          <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
+            <a href="https://calendly.com/wikolabs" target="_blank" rel="noopener noreferrer" className="inline-block bg-white text-rose-600 hover:bg-rose-50 px-10 py-5 rounded-xl font-bold text-xl transition-all shadow-xl">
+              📅 Réserver un créneau →
+            </a>
+            <a href="https://wa.me/261386626100?text=Bonjour%2C%20je%20souhaite%20discuter%20de%20PropGenAI%20avec%20Wikolabs." target="_blank" rel="noopener noreferrer" className="inline-block bg-white text-rose-600 hover:bg-rose-50 px-10 py-5 rounded-xl font-bold text-xl transition-all shadow-xl" style={{ background: "#25d366", borderColor: "#25d366" }}>
+              💬 WhatsApp →
+            </a>
+          </div>
           <p className="text-rose-200 text-sm mt-5">Essai gratuit · Aucune carte · Résultats immédiats</p>
         </div>
       </section>

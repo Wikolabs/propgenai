@@ -1,0 +1,45 @@
+name: Deploy propgenai
+
+on:
+  push:
+    branches: [main]
+
+env:
+  IMAGE_NAME: ghcr.io/wikolabs/propgenai
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/wikolabs/propgenai:latest
+
+      - name: Deploy to VM
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.WIKOLABS_VM_HOST }}
+          username: ${{ secrets.WIKOLABS_VM_USER }}
+          key: ${{ secrets.WIKOLABS_VM_SSH_KEY }}
+          script: |
+            docker pull ghcr.io/wikolabs/propgenai:latest
+            docker stop propgenai 2>/dev/null || true
+            docker rm propgenai 2>/dev/null || true
+            docker run -d               --name propgenai               -p 3006:3000               --restart unless-stopped               ghcr.io/wikolabs/propgenai:latest
+            echo "Deployed propgenai on port 3006"

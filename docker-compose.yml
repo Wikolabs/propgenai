@@ -1,0 +1,36 @@
+version: "3.9"
+
+# PropGenAI demo — production-ready POC.
+# 2 services orchestrated:
+#   - propgenai (Next.js frontend on host port 3006)
+#   - propgenai-backend (FastAPI Python, internal only on 8000)
+# Internal network so the frontend can reach the backend by service name.
+
+services:
+  propgenai-backend:
+    image: ghcr.io/wikolabs/propgenai-backend:latest
+    container_name: propgenai-backend
+    restart: unless-stopped
+    environment:
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+    networks:
+      - propgenai-net
+
+  propgenai:
+    image: ghcr.io/wikolabs/propgenai:latest
+    container_name: propgenai
+    restart: unless-stopped
+    ports:
+      - "3006:3000"
+    environment:
+      BACKEND_URL: "http://propgenai-backend:8000"
+    depends_on:
+      - propgenai-backend
+    networks:
+      - propgenai-net
+
+networks:
+  propgenai-net:
+    name: propgenai-net
+    driver: bridge

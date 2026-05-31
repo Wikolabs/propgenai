@@ -1,184 +1,228 @@
-﻿export default function PropGenAI() {
+﻿"use client";
+
+const P = {
+  name: "PropGenAI",
+  tagLabel: "Propales IA · DocuSign · Relances automatiques",
+  taglines: ["Vos notes de call.", "Une propale en 5 minutes.", "Signee en 48 heures."],
+  taglineAccentIdx: 1,
+  desc: "PropGenAI transforme vos notes de reunion en proposition commerciale PDF professionnelle, l'envoie via DocuSign et relance jusqu'a signature — sans que vous reecriviez une ligne.",
+  accent: "#EC4899",
+  accentDim: "rgba(236,72,153,0.1)",
+  accentBorder: "rgba(236,72,153,0.25)",
+  accentGlow: "rgba(236,72,153,0.12)",
+  waText: "PropGenAI",
+  navLinks: [
+    { label: "Fonctionnalites", href: "#features" },
+    { label: "Comment ca marche", href: "#process" },
+    { label: "Contact", href: "#cta" },
+  ],
+  metrics: [
+    { value: "48h", label: "discovery a contrat signe" },
+    { value: "-90%", label: "temps de redaction" },
+    { value: "+38%", label: "taux de signature" },
+    { value: "5min", label: "generation propale" },
+  ],
+  features: [
+    { icon: "🤖", title: "Generation IA dans votre ton", desc: "PropGenAI analyse vos notes de call — texte libre, transcript Otter/Loom ou bullet points — et genere un executive summary, une solution sur-mesure, un chiffrage et une timeline. Redige dans votre style, avec votre vocabulaire metier." },
+    { icon: "📄", title: "PDF professionnel a votre charte", desc: "Mise en page automatique avec votre logo, vos couleurs et votre police. Conditions generales incluses, mentions legales integrees. Un document pret a envoyer qui inspire confiance des la premiere lecture." },
+    { icon: "📊", title: "Suivi et relances jusqu'a signature", desc: "Envoi DocuSign direct, notification d'ouverture en temps reel, relances automatiques J+2 et J+5 avec ton adapte. Vous savez quand votre prospect a lu chaque section — et vous intervenez au bon moment." },
+  ],
+  steps: [
+    { num: "01", title: "Importez vos notes de call", desc: "Texte libre, transcript Otter/Loom, bullet points ou enregistrement audio — PropGenAI comprend tous les formats. Collez vos notes brutes, l'IA extrait les elements cles : budget, enjeux, timeline, decideurs." },
+    { num: "02", title: "L'IA structure et redige la propale", desc: "En 5 minutes : executive summary des enjeux client, solution personnalisee, chiffrage detaille, planning de mise en oeuvre, conditions. Ton professionnel, structure claire, arguments adaptes au profil du prospect." },
+    { num: "03", title: "Envoi DocuSign et relances auto", desc: "PDF genere avec votre charte, envoye directement par email via DocuSign. Suivi d'ouverture en temps reel, relances automatiques aux bons intervalles. Vous etes notifie des la signature." },
+  ],
+  testimonials: [
+    { quote: "Avant PropGenAI, chaque propale me prenait 3 heures. Redaction, mise en page, PDF, envoi... Maintenant je colle mes notes et j'ai un document professionnel en 5 minutes. Mon taux de signature a augmente de 40% car les propales arrivent le jour meme du call.", author: "Pierre-Antoine M.", role: "Directeur Associe, Agence Conseil" },
+    { quote: "Le suivi automatique est ce qui fait la difference. Je sais exactement quand mon prospect a ouvert la propale et combien de temps il a passe sur chaque page. Ca me permet d'appeler au bon moment avec les bons arguments. J'ai signe 3 contrats en une semaine.", author: "Isabelle V.", role: "Responsable Grands Comptes, Editeur B2B" },
+  ],
+  ctaTitle: "Votre prochaine propale en 5 minutes",
+  ctaDesc: "Importez vos notes. PropGenAI fait le reste. Aucune carte bancaire.",
+  ctaPrimary: "Reserver un creneau",
+  footerTagline: "Generation automatique de propositions commerciales IA",
+};
+
+export default function Page() {
+  const bg = "#04080F";
+  const bg2 = "#070D1B";
+  const card = "rgba(255,255,255,0.04)";
+  const border = "rgba(255,255,255,0.09)";
+  const gold = "#D4AF37";
+  const goldDim = "rgba(212,175,55,0.1)";
+  const goldBorder = "rgba(212,175,55,0.28)";
+  const txt1 = "#F0EDE6";
+  const txt2 = "#8B9DB5";
+  const txt3 = "#3C5068";
+  const { accent, accentDim, accentBorder, accentGlow } = P;
+
   return (
-    <div className="min-h-screen" style={{ fontFamily: "var(--font-body)" }}>
+    <div style={{ minHeight: "100vh", background: bg, color: txt1 }}>
+      <style>{`
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+        @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes pulseDot { 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:.4; transform:scale(1.6); } }
+        .wk-card { transition: background .3s, border-color .3s, transform .35s cubic-bezier(.34,1.2,.64,1); }
+        .wk-card:hover { background: rgba(255,255,255,0.07) !important; border-color: rgba(236,72,153,0.25) !important; transform: translateY(-6px) !important; }
+        .wk-btn { transition: opacity .2s, transform .2s, box-shadow .2s; }
+        .wk-btn:hover { opacity:.9; transform:translateY(-2px); box-shadow:0 12px 32px rgba(212,175,55,.18); }
+        .wk-wa { transition: opacity .2s, transform .2s; }
+        .wk-wa:hover { opacity:.9; transform:translateY(-2px); }
+        .wk-nav-link { color: #8B9DB5; text-decoration:none; font-size:14px; font-weight:500; transition:color .2s; }
+        .wk-nav-link:hover { color: #F0EDE6; }
+        @media(max-width:640px){ .wk-hide-sm{ display:none!important; } .wk-hero-title{ font-size:2.4rem!important; } }
+      `}</style>
 
       {/* NAVBAR */}
-      <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur border-b border-rose-100 shadow-sm">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-rose-600 flex items-center justify-center">
-              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
-            </div>
-            <span className="font-bold text-rose-900 text-xl" style={{ fontFamily: "var(--font-display)" }}>PropGenAI</span>
+      <nav style={{ position:"sticky", top:0, zIndex:100, background:"rgba(4,8,15,0.82)", backdropFilter:"blur(20px)", borderBottom:`1px solid ${border}`, padding:"0 40px", height:60, display:"flex", alignItems:"center", justifyContent:"space-between" }}>
+        <span style={{ fontSize:18, fontWeight:800, letterSpacing:"-0.5px", color:txt1 }}>
+          {P.name}<span style={{ color:gold }}>.</span>
+        </span>
+        <div style={{ display:"flex", gap:28, alignItems:"center" }}>
+          <div className="wk-hide-sm" style={{ display:"flex", gap:24 }}>
+            {P.navLinks.map(l => <a key={l.label} href={l.href} className="wk-nav-link">{l.label}</a>)}
           </div>
-          <div className="hidden md:flex items-center gap-8 text-sm text-rose-700">
-            <a href="#workflow" className="hover:text-rose-500 transition-colors">Workflow</a>
-            <a href="#features" className="hover:text-rose-500 transition-colors">Fonctionnalités</a>
-            <a href="#results" className="hover:text-rose-500 transition-colors">Résultats</a>
-          </div>
-          <a href="#cta" className="bg-rose-600 hover:bg-rose-700 text-white px-5 py-2 rounded-lg text-sm font-bold transition-colors">
-            Générer ma première propale
-          </a>
+          <button data-cal-link="wikolabs-team/30min" data-cal-namespace="wk30min" data-cal-config='{"layout":"month_view"}' className="wk-btn"
+            style={{ background:gold, color:"#04080F", border:"none", borderRadius:8, padding:"8px 18px", fontWeight:700, fontSize:13.5, cursor:"pointer", fontFamily:"inherit" }}>
+            Reserver →
+          </button>
         </div>
       </nav>
 
       {/* HERO */}
-      <section className="pt-32 pb-20 bg-rose-50 relative overflow-hidden">
-        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-rose-100 rounded-full blur-3xl opacity-60 pointer-events-none translate-x-1/3 translate-y-1/3" />
-        <div className="max-w-5xl mx-auto px-6 relative">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 bg-rose-100 border border-rose-200 text-rose-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-8">
-                ✍️ De la discovery au contrat signé en 48h
-              </div>
-              <h1 className="text-5xl md:text-6xl font-bold text-rose-950 leading-tight mb-6" style={{ fontFamily: "var(--font-display)" }}>
-                Vos notes de call<br />
-                deviennent une propale<br />
-                <span className="text-rose-500">en 5 minutes.</span>
-              </h1>
-              <p className="text-rose-700 text-lg mb-8 leading-relaxed">
-                PropGenAI transforme vos notes de réunion en proposition commerciale PDF professionnelle, l&apos;envoie via DocuSign et relance jusqu&apos;à signature — sans que vous réécriviez une ligne.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a href="#cta" className="bg-rose-600 hover:bg-rose-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-rose-200">
-                  Générer ma première propale →
-                </a>
-                <a href="#workflow" className="bg-white text-rose-700 border-2 border-rose-200 hover:border-rose-400 px-8 py-4 rounded-xl font-bold text-lg transition-all text-center">
-                  Voir le workflow
-                </a>
-              </div>
-            </div>
-
-            {/* Timeline / doc preview */}
-            <div className="space-y-4">
-              <div className="bg-white rounded-2xl p-5 border-l-4 border-rose-400 shadow-sm">
-                <div className="text-xs font-bold text-rose-400 uppercase tracking-widest mb-2">Call discovery — 14h00</div>
-                <div className="text-sm text-gray-600 leading-relaxed">&ldquo;Budget ~15k€, besoin urgent de réduire le churn, décideur = CEO + CTO présents, timeline Q3...&rdquo;</div>
-                <div className="text-xs text-gray-400 mt-2">Notes brutes importées</div>
-              </div>
-              <div className="flex items-center justify-center gap-2 text-rose-400">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
-                <span className="text-sm font-semibold">PropGenAI génère en 5 min</span>
-              </div>
-              <div className="bg-white rounded-2xl p-5 border border-rose-100 shadow-md">
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="w-5 h-5 bg-rose-100 rounded flex items-center justify-center">
-                    <svg className="w-3 h-3 text-rose-600" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" /></svg>
-                  </div>
-                  <span className="text-sm font-bold text-gray-800">Proposition_Commerciale_Client.pdf</span>
-                </div>
-                <div className="space-y-1.5 text-xs text-gray-500">
-                  {["✓ Résumé des enjeux client", "✓ Solution proposée personnalisée", "✓ Chiffrage détaillé 15 000€", "✓ Timeline Q3 incluse", "✓ Conditions & CGV"].map(line => (
-                    <div key={line} className="flex items-center gap-2">{line}</div>
-                  ))}
-                </div>
-                <div className="mt-3 pt-3 border-t border-rose-100 text-xs text-rose-600 font-semibold">
-                  📨 Envoyé via DocuSign · Relance automatique J+2
-                </div>
-              </div>
-            </div>
-          </div>
+      <section style={{ padding:"100px 40px 80px", maxWidth:1000, margin:"0 auto", textAlign:"center", position:"relative" }}>
+        <div style={{ position:"absolute", top:-60, left:"50%", transform:"translateX(-50%)", width:700, height:600, background:`radial-gradient(ellipse at 50% 30%, ${accentGlow} 0%, transparent 60%)`, pointerEvents:"none" }} />
+        <div style={{ display:"inline-flex", alignItems:"center", gap:8, marginBottom:24, background:accentDim, border:`1px solid ${accentBorder}`, borderRadius:100, padding:"6px 18px", animation:"fadeUp .5s ease both" }}>
+          <span style={{ width:7, height:7, borderRadius:"50%", background:accent, display:"inline-block", animation:"pulseDot 2s ease-in-out infinite" }} />
+          <span style={{ color:accent, fontSize:11.5, fontWeight:700, letterSpacing:"2px", textTransform:"uppercase" }}>{P.tagLabel}</span>
         </div>
-      </section>
-
-      {/* WORKFLOW */}
-      <section id="workflow" className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-rose-950 text-center mb-14" style={{ fontFamily: "var(--font-display)" }}>
-            Le workflow complet, automatisé
-          </h2>
-          <div className="space-y-4">
-            {[
-              { step: "01", icon: "🎙️", title: "Importez vos notes de call", desc: "Texte libre, transcript Otter/Loom, ou bullet points — PropGenAI comprend n'importe quel format.", color: "bg-rose-50 border-rose-200" },
-              { step: "02", icon: "🤖", title: "L'IA structure la propale", desc: "En 5 minutes : executive summary, solution sur-mesure, chiffrage, timeline, conditions. Rédigé dans votre ton.", color: "bg-pink-50 border-pink-200" },
-              { step: "03", icon: "📄", title: "PDF professionnel généré", desc: "Mise en page avec votre charte graphique, signature numérique, mentions légales. Prêt à envoyer.", color: "bg-fuchsia-50 border-fuchsia-200" },
-              { step: "04", icon: "✍️", title: "DocuSign + relances auto", desc: "Envoi direct par email, suivi de l'ouverture, relances automatiques J+2, J+5 — jusqu'à signature ou refus.", color: "bg-rose-50 border-rose-200" },
-            ].map((s) => (
-              <div key={s.step} className={`${s.color} border rounded-2xl p-6 flex gap-5 items-start`}>
-                <div className="text-3xl">{s.icon}</div>
-                <div>
-                  <div className="flex items-center gap-3 mb-1">
-                    <span className="text-xs font-bold text-rose-400 uppercase tracking-widest">{s.step}</span>
-                    <h3 className="font-bold text-rose-950" style={{ fontFamily: "var(--font-display)" }}>{s.title}</h3>
-                  </div>
-                  <p className="text-rose-700 text-sm">{s.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+        <h1 className="wk-hero-title" style={{ fontSize:"clamp(2.6rem,6vw,5rem)", fontWeight:700, lineHeight:1.08, letterSpacing:"-0.03em", marginBottom:28, fontFamily:"'Instrument Serif',Georgia,serif", animation:"fadeUp .5s .08s ease both" }}>
+          {P.taglines.map((line, i) => (
+            <span key={i} style={{ display:"block", color:i===P.taglineAccentIdx?accent:txt1, fontStyle:i===P.taglineAccentIdx?"italic":"normal" }}>{line}</span>
+          ))}
+        </h1>
+        <p style={{ fontSize:"1.1rem", color:txt2, lineHeight:1.72, maxWidth:580, margin:"0 auto 48px", animation:"fadeUp .5s .16s ease both" }}>{P.desc}</p>
+        <div style={{ display:"flex", flexWrap:"wrap", justifyContent:"center", gap:14, marginBottom:44, animation:"fadeUp .5s .24s ease both" }}>
+          {P.metrics.map(m => (
+            <div key={m.label} style={{ background:card, border:`1px solid ${border}`, borderRadius:18, padding:"14px 22px", textAlign:"center", minWidth:118 }}>
+              <div style={{ fontSize:"1.7rem", fontWeight:800, color:txt1, letterSpacing:"-1.5px", lineHeight:1 }}>{m.value}</div>
+              <div style={{ fontSize:"0.62rem", color:txt3, textTransform:"uppercase", letterSpacing:"1.5px", marginTop:5 }}>{m.label}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ display:"flex", flexWrap:"wrap", gap:12, justifyContent:"center", animation:"fadeUp .5s .32s ease both" }}>
+          <button data-cal-link="wikolabs-team/30min" data-cal-namespace="wk30min" data-cal-config='{"layout":"month_view"}' className="wk-btn"
+            style={{ background:gold, color:"#04080F", border:"none", borderRadius:10, padding:"14px 28px", fontWeight:700, fontSize:15, cursor:"pointer", display:"flex", alignItems:"center", gap:8, fontFamily:"inherit" }}>
+            📅 {P.ctaPrimary}
+          </button>
+          <a href={`https://wa.me/261386626100?text=Bonjour%2C%20je%20souhaite%20discuter%20de%20${encodeURIComponent(P.waText)}%20avec%20Wikolabs.`}
+            target="_blank" rel="noopener noreferrer" className="wk-wa"
+            style={{ background:"#25d366", color:"#fff", borderRadius:10, padding:"14px 28px", fontWeight:700, fontSize:15, textDecoration:"none", display:"flex", alignItems:"center", gap:8 }}>
+            💬 WhatsApp
+          </a>
         </div>
       </section>
 
       {/* FEATURES */}
-      <section id="features" className="py-20 bg-rose-950">
-        <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-white text-center mb-12" style={{ fontFamily: "var(--font-display)" }}>
-            Tout pour fermer plus vite
+      <section id="features" style={{ padding:"80px 40px", maxWidth:1100, margin:"0 auto" }}>
+        <div style={{ textAlign:"center", marginBottom:52 }}>
+          <p style={{ fontSize:"0.68rem", color:gold, letterSpacing:"3px", textTransform:"uppercase", fontWeight:700, marginBottom:14 }}>Fonctionnalites</p>
+          <h2 style={{ fontSize:"clamp(1.8rem,3.5vw,2.8rem)", fontWeight:700, color:txt1, letterSpacing:"-0.02em", fontFamily:"'Instrument Serif',Georgia,serif", lineHeight:1.15 }}>
+            Tout automatise, <em style={{ fontStyle:"italic", color:gold }}>rien a gerer</em>
           </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { icon: "🎨", title: "Charte graphique", desc: "Votre logo, couleurs et police intégrés automatiquement dans chaque propale générée.", color: "bg-rose-900/50 border-rose-700" },
-              { icon: "🔁", title: "Relances intelligentes", desc: "PropGenAI adapte le ton des relances selon l'urgence et l'historique du prospect.", color: "bg-pink-900/50 border-pink-700" },
-              { icon: "📊", title: "Tracking en temps réel", desc: "Voyez quand votre propale est ouverte, combien de temps passé sur chaque section.", color: "bg-fuchsia-900/50 border-fuchsia-700" },
-            ].map((f) => (
-              <div key={f.title} className={`${f.color} border rounded-xl p-6`}>
-                <div className="text-3xl mb-3">{f.icon}</div>
-                <h3 className="font-bold text-white mb-2" style={{ fontFamily: "var(--font-display)" }}>{f.title}</h3>
-                <p className="text-rose-300 text-sm">{f.desc}</p>
+        </div>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(300px,1fr))", gap:20 }}>
+          {P.features.map((f, i) => (
+            <div key={f.title} className="wk-card" style={{ background:card, border:`1px solid ${border}`, borderRadius:20, padding:"28px 28px 24px", position:"relative", overflow:"hidden" }}>
+              <div style={{ position:"absolute", top:0, left:0, right:0, height:2, background:`linear-gradient(90deg,transparent,${i===0?gold:accent},transparent)`, opacity:.6 }} />
+              <div style={{ fontSize:"2rem", marginBottom:16 }}>{f.icon}</div>
+              <h3 style={{ fontSize:"1.05rem", fontWeight:700, color:txt1, marginBottom:10 }}>{f.title}</h3>
+              <p style={{ fontSize:"0.88rem", color:txt2, lineHeight:1.7, margin:0 }}>{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section id="process" style={{ padding:"80px 40px", background:bg2 }}>
+        <div style={{ maxWidth:860, margin:"0 auto" }}>
+          <div style={{ textAlign:"center", marginBottom:48 }}>
+            <p style={{ fontSize:"0.68rem", color:gold, letterSpacing:"3px", textTransform:"uppercase", fontWeight:700, marginBottom:14 }}>Comment ca marche</p>
+            <h2 style={{ fontSize:"clamp(1.8rem,3.5vw,2.8rem)", fontWeight:700, color:txt1, letterSpacing:"-0.02em", fontFamily:"'Instrument Serif',Georgia,serif" }}>
+              De la discovery au <em style={{ fontStyle:"italic", color:accent }}>contrat signe</em>
+            </h2>
+          </div>
+          <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
+            {P.steps.map((s, i) => (
+              <div key={s.num} style={{ display:"flex", alignItems:"flex-start", gap:22, background:card, border:`1px solid ${border}`, borderRadius:18, padding:"22px 26px" }}>
+                <div style={{ flexShrink:0, width:46, height:46, background:i===0?goldDim:accentDim, border:`1px solid ${i===0?goldBorder:accentBorder}`, borderRadius:14, display:"flex", alignItems:"center", justifyContent:"center", color:i===0?gold:accent, fontWeight:800, fontSize:15 }}>
+                  {s.num}
+                </div>
+                <div>
+                  <h3 style={{ fontSize:"1rem", fontWeight:700, color:txt1, marginBottom:6, lineHeight:1.3 }}>{s.title}</h3>
+                  <p style={{ fontSize:"0.87rem", color:txt2, lineHeight:1.7, margin:0 }}>{s.desc}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* RESULTS */}
-      <section id="results" className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-6 text-center">
-            {[
-              { value: "48h", label: "de la discovery au contrat signé" },
-              { value: "−90%", label: "de temps passé à rédiger des propales" },
-              { value: "+38%", label: "de taux de signature vs propale manuelle" },
-            ].map((s) => (
-              <div key={s.label} className="p-8 bg-rose-50 rounded-2xl border border-rose-100">
-                <div className="text-4xl font-bold text-rose-600 mb-2" style={{ fontFamily: "var(--font-display)" }}>{s.value}</div>
-                <div className="text-rose-700 text-sm">{s.label}</div>
+      {/* TESTIMONIALS */}
+      <section style={{ padding:"80px 40px", maxWidth:900, margin:"0 auto" }}>
+        <div style={{ textAlign:"center", marginBottom:44 }}>
+          <p style={{ fontSize:"0.68rem", color:gold, letterSpacing:"3px", textTransform:"uppercase", fontWeight:700, marginBottom:14 }}>Temoignages</p>
+          <h2 style={{ fontSize:"clamp(1.6rem,3vw,2.4rem)", fontWeight:700, color:txt1, fontFamily:"'Instrument Serif',Georgia,serif" }}>Ce qu'en disent nos clients</h2>
+        </div>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(340px,1fr))", gap:20 }}>
+          {P.testimonials.map((t, i) => (
+            <div key={i} style={{ background:card, border:`1px solid ${border}`, borderLeft:`3px solid ${i===0?gold:accent}`, borderRadius:20, padding:"26px 26px 22px" }}>
+              <p style={{ fontSize:"0.92rem", color:txt2, lineHeight:1.75, fontStyle:"italic", marginBottom:20 }}>&ldquo;{t.quote}&rdquo;</p>
+              <div style={{ display:"flex", alignItems:"center", gap:12 }}>
+                <div style={{ width:38, height:38, borderRadius:"50%", background:i===0?goldDim:accentDim, border:`1px solid ${i===0?goldBorder:accentBorder}`, display:"flex", alignItems:"center", justifyContent:"center", fontSize:16 }}>👤</div>
+                <div>
+                  <div style={{ fontSize:"0.9rem", fontWeight:700, color:txt1 }}>{t.author}</div>
+                  <div style={{ fontSize:"0.72rem", color:txt3 }}>{t.role}</div>
+                </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* CTA */}
-      <section id="cta" className="py-20 bg-gradient-to-r from-rose-600 to-pink-600">
-        <div className="max-w-2xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold text-white mb-4" style={{ fontFamily: "var(--font-display)" }}>
-            Votre prochaine propale en 5 minutes
-          </h2>
-          <p className="text-rose-100 text-xl mb-10">Importez vos notes. PropGenAI fait le reste.</p>
-          <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
-            <button data-cal-link="wikolabs-team/30min" data-cal-namespace="wk30min" data-cal-config='{"layout":"month_view"}' type="button" target="_blank" rel="noopener noreferrer" className="inline-block bg-white text-rose-600 hover:bg-rose-50 px-10 py-5 rounded-xl font-bold text-xl transition-all shadow-xl">
-              📅 Réserver un créneau →
+      <section id="cta" style={{ padding:"0 40px 100px", maxWidth:860, margin:"0 auto" }}>
+        <div style={{ background:card, border:`1px solid ${goldBorder}`, borderRadius:24, padding:"64px 48px", textAlign:"center", backgroundImage:`radial-gradient(ellipse at 50% 0%, ${goldDim} 0%, transparent 65%)` }}>
+          <p style={{ fontSize:"0.68rem", color:gold, letterSpacing:"3px", textTransform:"uppercase", fontWeight:700, marginBottom:16 }}>Demarrer</p>
+          <h2 style={{ fontSize:"clamp(1.8rem,3.5vw,2.8rem)", fontWeight:700, color:txt1, marginBottom:14, letterSpacing:"-0.02em", fontFamily:"'Instrument Serif',Georgia,serif" }}>{P.ctaTitle}</h2>
+          <p style={{ color:txt2, fontSize:"1rem", marginBottom:36, lineHeight:1.7 }}>{P.ctaDesc}</p>
+          <div style={{ display:"flex", flexWrap:"wrap", gap:12, justifyContent:"center" }}>
+            <button data-cal-link="wikolabs-team/30min" data-cal-namespace="wk30min" data-cal-config='{"layout":"month_view"}' className="wk-btn"
+              style={{ background:gold, color:"#04080F", border:"none", borderRadius:10, padding:"14px 28px", fontWeight:700, fontSize:15, cursor:"pointer", display:"flex", alignItems:"center", gap:8, fontFamily:"inherit" }}>
+              📅 {P.ctaPrimary}
             </button>
-            <a href="https://wa.me/261386626100?text=Bonjour%2C%20je%20souhaite%20discuter%20de%20PropGenAI%20avec%20Wikolabs." target="_blank" rel="noopener noreferrer" className="inline-block bg-white text-rose-600 hover:bg-rose-50 px-10 py-5 rounded-xl font-bold text-xl transition-all shadow-xl" style={{ background: "#25d366", borderColor: "#25d366" }}>
-              💬 WhatsApp →
+            <a href={`https://wa.me/261386626100?text=Bonjour%2C%20je%20souhaite%20discuter%20de%20${encodeURIComponent(P.waText)}%20avec%20Wikolabs.`}
+              target="_blank" rel="noopener noreferrer" className="wk-wa"
+              style={{ background:"#25d366", color:"#fff", borderRadius:10, padding:"14px 28px", fontWeight:700, fontSize:15, textDecoration:"none", display:"flex", alignItems:"center", gap:8 }}>
+              💬 WhatsApp
             </a>
           </div>
-          <p className="text-rose-200 text-sm mt-5">Essai gratuit · Aucune carte · Résultats immédiats</p>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-rose-950 text-rose-400 py-10">
-        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <span className="font-bold text-white text-xl" style={{ fontFamily: "var(--font-display)" }}>PropGenAI</span>
-          <p className="text-sm">© 2025 PropGenAI — Un produit <a href="https://wikolabs.com" className="text-rose-400 hover:text-rose-200">Wikolabs</a></p>
-          <div className="flex flex-wrap gap-4 text-sm">
-            <a href="mailto:team@wikolabs.com" className="hover:text-rose-200 transition-colors">team@wikolabs.com</a>
-            <span>·</span>
-            <a href="tel:+261386626100" className="hover:text-rose-200 transition-colors">+261 38 66 261 00</a>
-            <span>·</span>
-            <button data-cal-link="wikolabs-team/30min" data-cal-namespace="wk30min" data-cal-config='{"layout":"month_view"}' type="button" target="_blank" rel="noopener noreferrer" className="hover:text-rose-200 transition-colors" style={{cursor:"pointer",background:"none",border:"none",padding:0,font:"inherit",color:"inherit",textDecoration:"none"}}>Prendre RDV</button>
+      <footer style={{ borderTop:`1px solid ${border}`, padding:"32px 40px" }}>
+        <div style={{ maxWidth:1200, margin:"0 auto", display:"flex", flexWrap:"wrap", justifyContent:"space-between", alignItems:"center", gap:16 }}>
+          <div>
+            <span style={{ fontWeight:800, fontSize:16, color:txt1 }}>{P.name}</span><span style={{ color:gold }}>.</span>
+            <span style={{ display:"block", fontSize:12, color:txt3, marginTop:3 }}>{P.footerTagline}</span>
+          </div>
+          <p style={{ fontSize:13, color:txt3 }}>© 2026 {P.name} — Un produit <a href="https://wikolabs.com" style={{ color:txt2, textDecoration:"none" }}>Wikolabs</a></p>
+          <div style={{ display:"flex", flexWrap:"wrap", gap:16, fontSize:13, alignItems:"center" }}>
+            <a href="mailto:team@wikolabs.com" style={{ color:txt3, textDecoration:"none" }}>team@wikolabs.com</a>
+            <span style={{ color:txt3 }}>·</span>
+            <button data-cal-link="wikolabs-team/30min" data-cal-namespace="wk30min" data-cal-config='{"layout":"month_view"}' style={{ background:"none", border:"none", color:txt3, fontSize:13, cursor:"pointer", fontFamily:"inherit", padding:0 }}>Prendre RDV</button>
           </div>
         </div>
       </footer>
